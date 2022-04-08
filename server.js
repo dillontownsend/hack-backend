@@ -5,7 +5,7 @@ const cors = require('cors')
 require("dotenv").config()
 
 const app = express()
-const port = 4000
+const port = process.env.PORT
 
 
 // middleware
@@ -14,7 +14,7 @@ app.use(express.json())
 
 
 // database config
-const uri = 'mongodb+srv://dillontownsend:hackathon22@cluster0.jnljr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const uri = process.env.MONGO_DB_URI
 mongoose.connect(uri)
     .then(() => {
         app.listen(port, () => {
@@ -29,3 +29,5 @@ mongoose.connect(uri)
 const testsRouter = require('./routes/tests')
 app.use('/tests', testsRouter)
 
+const usersRouter = require('./routes/users')
+app.use('/users', usersRouter)
