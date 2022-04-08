@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
     Test.find()
         .then(tests => {
             res.status(200).json(tests)
-            console.log('this is logging the test task')
         })
         .catch(err => {
             res.status(400).json(err)
