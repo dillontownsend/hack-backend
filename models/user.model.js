@@ -14,6 +14,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    carbonTotal: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 }, { timestamps: true })
 
 const User = mongoose.model('User', userSchema)

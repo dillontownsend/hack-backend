@@ -6,7 +6,7 @@ const verifyJWT = (req, res, next) => {
     if (!token) {
         res.status(401).json({ unauthorized: true })
     } else {
-        jwt.verify(token, process.env.SECRET_JWT_KEY, (err, decoded) => {
+        jwt.verify(token, 'secret key :)', (err, decoded) => {
             if (err) {
                 res.status(400).json(err)
             } else {

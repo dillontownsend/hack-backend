@@ -26,8 +26,8 @@ mongoose.connect(uri)
 
 
 // routes
-const testsRouter = require('./routes/tests')
-app.use('/tests', testsRouter)
-
 const usersRouter = require('./routes/users')
 app.use('/users', usersRouter)
+
+const recordsRouter = require('./routes/records')
+app.use('/records', recordsRouter)

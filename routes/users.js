@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
                             const token = jwt.sign(
                                 { id: user.id },
                                 'secret key :)',
-                                { expiresIn: 3600 }
+                                { expiresIn: 3600 * 24 }
                             )
                             res.json({
                                 token: token,
@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
                         const token = jwt.sign(
                             { id: user.id },
                             'secret key :)',
-                            { expiresIn: 3600 }
+                            { expiresIn: 3600 * 24 }
                         )
                         res.json({
                             token: token,
