@@ -134,4 +134,25 @@ router.post('/vehicle/create', verifyJWT, async (req, res) => {
         })
 })
 
+// method   GET /records
+// desc     create all of your records
+// access   private
+router.get('/', verifyJWT, (req, res) => {
+    const { userId } = req
+    User.findById(userId)
+        .then(user => {
+            Record.find({ userId })
+                .then(records => {
+                    res.status(200).json({
+                        company: user.company,
+                        carbonTotal: user.carbonTotal,
+                        carbonOffset: user.carbonOffset,
+                        records: records
+                    })
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+})
+
 module.exports = router

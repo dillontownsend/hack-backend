@@ -75,6 +75,24 @@ router.post('/login', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
+// method   PUT /users/donated
+// desc     update the balances after a user has donated
+// access   private
+router.put('/donated', verifyJWT, (req, res) => {
+    const { userId } = req
+
+    User.findById(userId)
+        .then(user => {
+            currUnpaid = user.carbonTotal
+
+            user.carbonTotal = 0
+            user.carbonOffset += currUnpaid
+            user.save()
+                .then(user => res.status(200).json({ success: true }))
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+})
 
 
 module.exports = router
